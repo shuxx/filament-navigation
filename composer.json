@@ -1,53 +1,53 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "shuxx/filament-navigation",
+    "description": "Configure Filament navigation via a simple PHP config file with groups, links, and 24+ separator styles - no manual navigation building required!",
     "keywords": [
-        ":vendor_name",
+        "filament",
         "laravel",
-        ":package_slug"
+        "navigation",
+        "menu",
+        "filament-plugin",
+        "sidebar"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/shuxx/filament-navigation",
     "support": {
-        "issues": "https://github.com/:vendor_slug/:package_slug/issues",
-        "source": "https://github.com/:vendor_slug/:package_slug"
+        "issues": "https://github.com/shuxx/filament-navigation/issues",
+        "source": "https://github.com/shuxx/filament-navigation"
     },
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Shuxx",
+            "email": "contact@pierre-desforges.fr",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.1",
-        "filament/filament": "^3.0",
-        "filament/forms": "^3.0",
-        "filament/tables": "^3.0",
+        "php": "^8.1|^8.2|^8.3",
+        "filament/filament": "^4.0",
+        "illuminate/contracts": "^11.0|^12.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
-        "nunomaduro/collision": "^7.9",
+        "nunomaduro/collision": "^8.0",
         "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.0",
+        "orchestra/testbench": "^9.0",
         "pestphp/pest": "^2.1",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "spatie/laravel-ray": "^1.26"
+        "phpstan/phpstan-phpunit": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Shuxx\\FilamentNavigation\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Shuxx\\FilamentNavigation\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -67,11 +67,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
-            }
+                "Shuxx\\FilamentNavigation\\FilamentNavigationServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
