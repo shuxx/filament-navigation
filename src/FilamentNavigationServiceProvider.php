@@ -18,8 +18,8 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
  * The service provider is automatically discovered by Laravel thanks to
  * the "extra.laravel.providers" section in composer.json
  *
- * @package Shuxx\FilamentNavigation
  * @author Shuxx
+ *
  * @link https://github.com/shuxx/filament-navigation
  */
 class FilamentNavigationServiceProvider extends PackageServiceProvider
@@ -29,8 +29,6 @@ class FilamentNavigationServiceProvider extends PackageServiceProvider
      *
      * Used to identify the package in Laravel and to
      * automatically generate publication tags.
-     *
-     * @var string
      */
     public static string $name = 'filament-navigation';
 
@@ -45,8 +43,7 @@ class FilamentNavigationServiceProvider extends PackageServiceProvider
      * - Automatically merged with the application config (mergeConfigFrom)
      * - Publishable via: php artisan vendor:publish --tag="filament-navigation-config"
      *
-     * @param Package $package The package instance to configure
-     * @return void
+     * @param  Package  $package  The package instance to configure
      */
     public function configurePackage(Package $package): void
     {
