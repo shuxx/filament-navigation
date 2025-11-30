@@ -19,8 +19,8 @@ use Filament\Panel;
  * - Order preservation of elements
  * - Automatic hover effect disable on separators
  *
+ * @package Shuxx\FilamentNavigation
  * @author Shuxx
- *
  * @link https://github.com/shuxx/filament-navigation
  */
 class FilamentNavigationPlugin implements Plugin
@@ -30,6 +30,8 @@ class FilamentNavigationPlugin implements Plugin
      *
      * Default is true to prevent separators from reacting to mouse hover.
      * Can be modified via the disableSeparatorHover() method
+     *
+     * @var bool
      */
     protected bool $disableSeparatorHover = true;
 
@@ -53,7 +55,8 @@ class FilamentNavigationPlugin implements Plugin
      * 1. Navigation from config file
      * 2. CSS to disable hover on separators (if enabled)
      *
-     * @param  Panel  $panel  The Filament panel in which to register the plugin
+     * @param Panel $panel The Filament panel in which to register the plugin
+     * @return void
      */
     public function register(Panel $panel): void
     {
@@ -86,7 +89,8 @@ class FilamentNavigationPlugin implements Plugin
      * This method is called after plugin registration.
      * It can be used to perform additional actions.
      *
-     * @param  Panel  $panel  The Filament panel
+     * @param Panel $panel The Filament panel
+     * @return void
      */
     public function boot(Panel $panel): void
     {
@@ -104,7 +108,7 @@ class FilamentNavigationPlugin implements Plugin
      */
     public static function make(): static
     {
-        return new static;
+        return new static();
     }
 
     /**
@@ -117,7 +121,7 @@ class FilamentNavigationPlugin implements Plugin
      * FilamentNavigationPlugin::make()
      *     ->disableSeparatorHover(false) // Enable hover
      *
-     * @param  bool  $disable  True to disable hover, false to enable it
+     * @param bool $disable True to disable hover, false to enable it
      * @return static Current instance for chaining
      */
     public function disableSeparatorHover(bool $disable = true): static
@@ -139,7 +143,7 @@ class FilamentNavigationPlugin implements Plugin
      *
      * This allows respecting the order defined in the configuration array.
      *
-     * @param  NavigationBuilder  $builder  The Filament navigation builder
+     * @param NavigationBuilder $builder The Filament navigation builder
      * @return NavigationBuilder The builder with configured groups
      */
     protected function buildNavigationFromConfig(NavigationBuilder $builder): NavigationBuilder
@@ -157,7 +161,7 @@ class FilamentNavigationPlugin implements Plugin
                 $style = $item['style'] ?? 'default';
 
                 // Select the Unicode character corresponding to the style
-                $separatorLabel = match ($style) {
+                $separatorLabel = match($style) {
                     // Classic lines
                     'default' => '───────────',      // Simple horizontal line
                     'long' => '────────────────',    // Long horizontal line
@@ -207,7 +211,7 @@ class FilamentNavigationPlugin implements Plugin
                     ->icon(null)
                     ->collapsible(false);
 
-                // === NAVIGATION GROUP ===
+            // === NAVIGATION GROUP ===
             } elseif ($type === 'group') {
                 $groupItems = [];
 
@@ -215,7 +219,7 @@ class FilamentNavigationPlugin implements Plugin
                 if (isset($item['items']) && is_array($item['items'])) {
                     foreach ($item['items'] as $subitem) {
                         // Create each group item
-                        $navItem = NavigationItem::make($subitem['label'] ?? 'Item')
+                        $navItem = NavigationItem::make(__($subitem['label']) ?? 'Item')
                             ->url($subitem['url'] ?? '#')
                             ->icon($subitem['icon'] ?? null);
 
@@ -229,15 +233,15 @@ class FilamentNavigationPlugin implements Plugin
                 }
 
                 // Create the group with its items
-                $groups[] = NavigationGroup::make($item['label'] ?? 'Group')
+                $groups[] = NavigationGroup::make(__($item['label']) ?? 'Group')
                     ->items($groupItems)
                     ->icon($item['icon'] ?? null)
                     ->collapsible($item['collapsible'] ?? true);
 
-                // === DIRECT LINK ===
+            // === DIRECT LINK ===
             } elseif ($type === 'link') {
                 // Create the navigation item
-                $navItem = NavigationItem::make($item['label'] ?? 'Link')
+                $navItem = NavigationItem::make(__($item['label']) ?? 'Link')
                     ->url($item['url'] ?? '#')
                     ->icon($item['icon'] ?? null);
 
